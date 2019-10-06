@@ -12,47 +12,29 @@
 			<a class="main-article-link" href="#">
 				<div class="main-article mb-5 pb-3">
 					<img src="images/boogschieten.jpg" alt="boogschieten">
+		
 					<h1 class="text-center mt-2">Boogschieten <br>Team NMD geeft het voorbeeld</h1>
 				</div>
 			</a>
 
 			<!-- Supporting Camps -->
-
-			<div class="article-container my-1">
-				<a href="camp.html">
-					<img class="article-img" src="images/krabpaal.png">
-					<div class="article-title d-inline-block pl-3 align-middle">
-						<span>Krabpaaljongleren.<br> Als het kriebelt, moet je sporten.</span>
-						<br>
-						<span class="align-left article-details"><img class="article-author-img rounded-circle" src="images/alien-profile.png"> Philippe </span>
-						<span class="pl-5 article-details float-right"> 3 uur geleden</span>
-					</div>
-				</a>
-			</div>
-
-			<div class="article-container my-1">
-				<a href="#">
-					<img class="article-img"  src="images/marina.jpg">
-					<div class="article-title d-inline-block pl-3 align-middle">
-						<span>Chacochewerpen <br> Marina Wally geeft het voorbeeld</span>
-						<br>
-						<span class="align-left article-details"><img class="article-author-img rounded-circle" src="images/astronaut-profile.png"> Donald </span>
-						<span class="pl-5 article-details float-right"> 6 dagen geleden</span>
-					</div>
-				</a>
-			</div>
-
-			<div class="article-container my-1">
-				<a href="#">
-					<img class="article-img" src="images/snelwandelen.png">
-					<div class="article-title d-inline-block pl-3 align-middle">
-						<span>Snelwandelen: <br> Ideaal om de bus te halen</span>
-						<br>
-						<span class="align-left article-details"><img class="article-author-img rounded-circle" src="images/astronaut-profile.png"> Ferdinand </span>
-						<span class="pl-5 article-details float-right"> 2 weken geleden</span>
-					</div>
-				</a>
-			</div>
+			{% for kampen in kampens %}
+				<div class="article-container my-1">
+					<a href="{{ path('kampen_show', {'id': kampen.id}) }}">
+						<img class="article-img" src="images/krabpaal.png">
+						<div class="article-title d-inline-block pl-3 align-middle">
+							<span>{{ kampen.title }}<br>{{ kampen.quote }}</span>
+							<br>
+							<span class="align-left article-details"><img class="article-author-img rounded-circle" src="images/alien-profile.png"> Philippe </span>
+							<span class="pl-5 article-details float-right">{{ kampen.datum ? kampen.datum|date('Y-m-d H:i:s') : '' }}</span>
+						</div>
+					</a>
+				</div>
+           
+			{% else %}
+					<div colspan="9">Geen kampen gevonden</div>
+			{% endfor %}
+		
 
 		</div>
 
@@ -74,43 +56,5 @@
 </div>
 
 
- <h1>Nieuwe kampen</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Quote</th>
-                <th>Datum</th>
-                <th>Afbeelding</th>
-                <th>Beschrijving</th>
-                <th>Kijker</th>
-                <th>Likes</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for kampen in kampens %}
-            <tr>
-                <td>{{ kampen.id }}</td>
-                <td>{{ kampen.title }}</td>
-                <td>{{ kampen.quote }}</td>
-                <td>{{ kampen.datum ? kampen.datum|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ kampen.afbeelding }}</td>
-                <td>{{ kampen.beschrijving }}</td>
-                <td>{{ kampen.kijker ? 'Yes' : 'No' }}</td>
-                <td>{{ kampen.likes ? kampen.likes|join(', ') : '' }}</td>
-                <td>
-                    <a href="{{ path('kampen_show', {'id': kampen.id}) }}">show</a>
-                    <a href="{{ path('kampen_edit', {'id': kampen.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+       
 {% endblock %}
