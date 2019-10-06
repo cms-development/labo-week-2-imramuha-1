@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kampen{% endblock %}
+
+{% block body %}
+    <h1>Kampen</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ kampen.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ kampen.title }}</td>
+            </tr>
+            <tr>
+                <th>Quote</th>
+                <td>{{ kampen.quote }}</td>
+            </tr>
+            <tr>
+                <th>Datum</th>
+                <td>{{ kampen.datum ? kampen.datum|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Afbeelding</th>
+                <td>{{ kampen.afbeelding }}</td>
+            </tr>
+            <tr>
+                <th>Beschrijving</th>
+                <td>{{ kampen.beschrijving }}</td>
+            </tr>
+            <tr>
+                <th>Kijker</th>
+                <td>{{ kampen.kijker ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Likes</th>
+                <td>{{ kampen.likes ? kampen.likes|join(', ') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('kampen_index') }}">back to list</a>
+
+    <a href="{{ path('kampen_edit', {'id': kampen.id}) }}">edit</a>
+
+    {{ include('kampen/_delete_form.html.twig') }}
+{% endblock %}

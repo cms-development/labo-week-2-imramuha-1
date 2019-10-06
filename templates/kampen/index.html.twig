@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lijst van alle kampen{% endblock %}
+
+{% block body %}
+    <h1>Kampen index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Quote</th>
+                <th>Datum</th>
+                <th>Afbeelding</th>
+                <th>Beschrijving</th>
+                <th>Kijker</th>
+                <th>Likes</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for kampen in kampens %}
+            <tr>
+                <td>{{ kampen.id }}</td>
+                <td>{{ kampen.title }}</td>
+                <td>{{ kampen.quote }}</td>
+                <td>{{ kampen.datum ? kampen.datum|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ kampen.afbeelding }}</td>
+                <td>{{ kampen.beschrijving }}</td>
+                <td>{{ kampen.kijker ? 'Yes' : 'No' }}</td>
+                <td>{{ kampen.likes ? kampen.likes|join(', ') : '' }}</td>
+                <td>
+                    <a href="{{ path('kampen_show', {'id': kampen.id}) }}">show</a>
+                    <a href="{{ path('kampen_edit', {'id': kampen.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('kampen_new') }}">Create new</a>
+{% endblock %}

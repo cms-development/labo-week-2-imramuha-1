@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Blozo Sportkampen{% endblock %}</title>
+        {% include 'parts/header.html.twig' %}
+    </head>
+    <body>
+        {% include 'parts/nav.html.twig' %}
+        {% block body %}{% endblock %}
+        {% include 'parts/footer.html.twig' %}
+        {% include 'parts/scripts.html.twig' %}
+    </body>
+</html>
