@@ -1,4 +1,11 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+
+    {{ form_row(form.title) }}
+    {{ form_row(form.quote) }}
+    {{ form_row(form.datum) }}
+    {{ form_row(form.afbeelding) }}
+    {{ form_row(form.beschrijving) }}
+    {{ form_row(form.kijker) }}
+    {{ form_row(form.likes) }}
+
+{{ form_end(form, {'render_rest': false }) }}

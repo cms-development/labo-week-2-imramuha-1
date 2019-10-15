@@ -10,6 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 
 /**
  * @Route("/kampen")
@@ -27,12 +31,17 @@ class KampenController extends AbstractController
     }
 
     /**
-     * @Route("/nieuw-kamp", name="kampen_new", methods={"GET","POST"})
+     * @Route("/nieuw-kamp", name="kampen_new")
      */
-    public function new(Request $request): Response
+    public function new(Request $request)
     {
         $kampen = new Kampen();
-        $form = $this->createForm(KampenType::class, $kampen);
+        $form = $this->createForm(KampenType::class, $kampen, [
+            'action' => $this->generateUrl('kampen_new'),
+            'method' => 'GET',
+        ]);
+
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -44,7 +53,6 @@ class KampenController extends AbstractController
         }
 
         return $this->render('kampen/new.html.twig', [
-            'kampen' => $kampen,
             'form' => $form->createView(),
         ]);
     }

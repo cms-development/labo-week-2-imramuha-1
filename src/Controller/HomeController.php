@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 // Twig : een templating-taal die gemakkelijk template/sjabloon returneert.
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
 class HomeController extends AbstractController
 {
 
@@ -20,9 +21,10 @@ class HomeController extends AbstractController
     /**
     * @Route("/")
     */
-    public function index(KampenRepository $kampenRepository): Response
+    public function index(KampenRepository $kampenRepository, Request $request): Response
     {
               
+
         /*
         $limit = 5;
 

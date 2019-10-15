@@ -5,7 +5,20 @@
 {% block body %}
     <h1>Create new Kampen</h1>
 
-    {{ include('kampen/_form.html.twig') }}
+    {{ form_start(form) }}
+        {{ form_row(form._token) }}
+
+        {{ form_row(form.title) }}
+        {{ form_row(form.quote) }}
+        {{ form_row(form.datum) }}
+        {{ form_row(form.afbeelding) }}
+        {{ form_row(form.beschrijving) }}
+        {{ form_row(form.kijker) }}
+        {{ form_row(form.likes) }}
+
+        
+        {{ form_row(form.save) }}
+    {{ form_end(form, {'render_rest': false }) }}    
 
     <a href="{{ path('kampen_index') }}">back to list</a>
 {% endblock %}

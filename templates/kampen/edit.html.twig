@@ -4,8 +4,20 @@
 
 {% block body %}
     <h1>Edit Kampen</h1>
+   
+    {{ form_start(form) }}
+        {{ form_row(form._token) }}
 
-    {{ include('kampen/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.quote) }}
+        {{ form_row(form.datum) }}
+        {{ form_row(form.afbeelding) }}
+        {{ form_row(form.beschrijving) }}
+        {{ form_row(form.kijker) }}
+        {{ form_row(form.likes) }}
+        
+        {{ form_row(form.update) }}
+    {{ form_end(form, {'render_rest': false }) }}    
 
     <a href="{{ path('kampen_index') }}">back to list</a>
 
